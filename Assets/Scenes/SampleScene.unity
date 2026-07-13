@@ -752,6 +752,8 @@ MonoBehaviour:
   bound: 5
   boundForce: 1.5
   boundStart: 2
+  rotationScale: 0
+  rotationSpeed: 0
 --- !u!65 &1471692247
 BoxCollider:
   m_ObjectHideFlags: 0
