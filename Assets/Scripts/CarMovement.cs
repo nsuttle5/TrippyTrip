@@ -9,6 +9,8 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private float bound;
     [SerializeField] private float boundForce;
     [SerializeField] private float boundStart;
+    [SerializeField] private float rotationScale;
+    [SerializeField] private float rotationSpeed;
 
 
     void Update()
@@ -36,5 +38,10 @@ public class CarMovement : MonoBehaviour
         float currentSpeed = rb.linearVelocity.x;
         float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime);
         rb.linearVelocity = new Vector3(newSpeed, rb.linearVelocity.y, rb.linearVelocity.z);
+    
+        float rotationAngle = currentSpeed * rotationScale;
+        float smoothedY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, smoothedY, transform.localEulerAngles.z);
+
     }
 }
