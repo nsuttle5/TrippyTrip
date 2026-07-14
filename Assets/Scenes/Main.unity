@@ -6051,7 +6051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMovement
   moveSpeed: 5
-  speedTurnCorrelation: 1
+  speedTurnCorrelation: 0.1
   acceleration: 20
   rb: {fileID: 1471692251}
   roadBound: 5
