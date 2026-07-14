@@ -6,6 +6,7 @@ public class CarMovement : MonoBehaviour
 {
     [Header("Core Movement")]
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float speedTurnCorrelation = 1;
     [SerializeField] private float acceleration = 5f;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float roadBound;
@@ -46,7 +47,7 @@ public class CarMovement : MonoBehaviour
     private bool _isShrinking;
     private bool _isLaunched;
     private bool _isBoosting;
-    private float _currentMoveSpeedMultiplier = 1f;
+    private float _currentMoveSpeedMultiplier = 1;
     private int _globalPropertyId;
 
     void Start()
@@ -58,6 +59,12 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
+        //Set scroll speeds globally
+        float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
+        scrollTime+=Mathf.Repeat(Time.deltaTime * scrollSpeed, 1f);
+        Shader.SetGlobalFloat(_globalPropertyId, scrollTime);
+        //
+
         //Handle boosts and effects
         HandleMechanicInput();
         //
@@ -74,7 +81,7 @@ public class CarMovement : MonoBehaviour
         float effectiveMoveSpeed = moveSpeed * _currentMoveSpeedMultiplier;
         float desiredSpeed = horizontalInput * effectiveMoveSpeed - closeness * boundForce * effectiveMoveSpeed * Mathf.Sign(position.x);
         float currentSpeed = rb.linearVelocity.x;
-        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime);
+        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime) * Mathf.Pow(scrollSpeed/targetScrollSpeed, speedTurnCorrelation);
         //
 
         //Vertical movement
@@ -104,13 +111,14 @@ public class CarMovement : MonoBehaviour
         rb.angularVelocity += new Vector3(rb.angularVelocity.x, (targetY - transform.localEulerAngles.y) * rotationSpeed, rb.angularVelocity.z);
         //
 
-        //Set scroll speeds globally
-        float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
-        scrollSpeed = Mathf.MoveTowards(scrollSpeed, targetScrollSpeed, scrollSpeedTransitionSpeed * Time.deltaTime);
-
-        scrollTime+=Mathf.Repeat(Time.deltaTime * scrollSpeed, 1f);
-        Shader.SetGlobalFloat(_globalPropertyId, scrollTime);
-        //
+        if(position.x > roadBound || position.x < -roadBound)
+        {
+            scrollSpeed = scrollSpeed*.999f;
+        }
+        else
+        {
+            scrollSpeed = Mathf.MoveTowards(scrollSpeed, targetScrollSpeed, scrollSpeedTransitionSpeed * Time.deltaTime);
+        }
     }
 
     private float GetHorizontalInput()
