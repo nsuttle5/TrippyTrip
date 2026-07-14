@@ -662,9 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   direction: {x: 0, y: 0, z: -1}
-  setSpeed: 1
-  loopForward: 0
-  loopBackward: 0
+  loopForward: 30
+  loopBackward: -30
 --- !u!1 &1155131461
 GameObject:
   m_ObjectHideFlags: 0

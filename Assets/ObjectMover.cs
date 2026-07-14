@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObjectMover : MonoBehaviour
 {
     public Vector3 direction;
-    public float setSpeed;
+    private float setSpeed;
 
     public float loopForward, loopBackward;
     void Update()
