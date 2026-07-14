@@ -36,7 +36,9 @@ public class CarMovement : MonoBehaviour
     [Header("Road Scroll")]
     [SerializeField] private float baseScrollSpeed = 1f;
     [SerializeField] private float scrollSpeedTransitionSpeed = 5f;
-    private const string scrollSpeedPropertyName = "_speed";
+    public static float scrollTime;
+    private const string timePropertyName = "_time";
+    public static float scrollSpeed;
 
     private Vector3 _originalScale;
     private float _groundY;
@@ -44,35 +46,23 @@ public class CarMovement : MonoBehaviour
     private bool _isLaunched;
     private bool _isBoosting;
     private float _currentMoveSpeedMultiplier = 1f;
-    private float _currentScrollSpeed;
-    private int _scrollSpeedPropertyId;
+    private int _globalPropertyId;
 
     void Start()
     {
         _originalScale = transform.localScale;
         _groundY = rb.position.y;
-
-        _currentScrollSpeed = baseScrollSpeed;
-        _scrollSpeedPropertyId = Shader.PropertyToID(scrollSpeedPropertyName);
-        Shader.SetGlobalFloat(_scrollSpeedPropertyId, _currentScrollSpeed);
+        _globalPropertyId = Shader.PropertyToID(timePropertyName);
     }
 
     void Update()
     {
+        //Handle boosts and effects
         HandleMechanicInput();
+        //
 
-        float horizontalInput = 0f;
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.aKey.isPressed)
-            {
-                horizontalInput = -1f;
-            }
-            else if (Keyboard.current.dKey.isPressed)
-            {
-                horizontalInput = 1f;
-            }
-        }
+        //Left and right movement
+        float horizontalInput = GetHorizontalInput();
 
         Vector3 position = rb.position;
         position.x = Mathf.Clamp(position.x, -bound, bound);
@@ -84,7 +74,9 @@ public class CarMovement : MonoBehaviour
         float desiredSpeed = horizontalInput * effectiveMoveSpeed - closeness * boundForce * effectiveMoveSpeed * Mathf.Sign(position.x);
         float currentSpeed = rb.linearVelocity.x;
         float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime);
+        //
 
+        //Vertical movement
         float verticalVelocity = rb.linearVelocity.y;
         if (_isLaunched)
         {
@@ -99,16 +91,41 @@ public class CarMovement : MonoBehaviour
                 _isLaunched = false;
             }
         }
+        //
 
+        //Apply velocities
         rb.linearVelocity = new Vector3(newSpeed, verticalVelocity, rb.linearVelocity.z);
+        //
 
-        float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
-        _currentScrollSpeed = Mathf.MoveTowards(_currentScrollSpeed, targetScrollSpeed, scrollSpeedTransitionSpeed * Time.deltaTime);
-        Shader.SetGlobalFloat(_scrollSpeedPropertyId, _currentScrollSpeed);
-
+        //Handle rotation visual
         float rotationAngle = currentSpeed * rotationScale;
         float smoothedY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, smoothedY, transform.localEulerAngles.z);
+        //
+
+        //Set scroll speeds globally
+        float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
+        scrollSpeed = Mathf.MoveTowards(scrollSpeed, targetScrollSpeed, scrollSpeedTransitionSpeed * Time.deltaTime);
+
+        scrollTime+=Mathf.Repeat(Time.deltaTime * scrollSpeed, 1f);
+        Shader.SetGlobalFloat(_globalPropertyId, scrollTime);
+        //
+    }
+
+    private float GetHorizontalInput()
+    {
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.aKey.isPressed)
+            {
+                return -1f;
+            }
+            else if (Keyboard.current.dKey.isPressed)
+            {
+                return 1f;
+            }
+        }
+        return 0;
     }
 
     private void HandleMechanicInput()

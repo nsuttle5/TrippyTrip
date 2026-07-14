@@ -4,12 +4,11 @@ public class ObjectMover : MonoBehaviour
 {
     public Vector3 direction;
     public float setSpeed;
-    public static float speed;
 
     public float loopForward, loopBackward;
     void Update()
     {
-        speed = setSpeed;
+        setSpeed = CarMovement.scrollSpeed;
         foreach(Transform child in transform)
         {
             Vector3 targetPosition = child.position + direction.normalized * setSpeed * 10 * Time.deltaTime;
@@ -22,7 +21,5 @@ public class ObjectMover : MonoBehaviour
                 child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y, loopForward);
             }
         }
-
-        Shader.SetGlobalFloat("_speed", -speed);
     }
 }
