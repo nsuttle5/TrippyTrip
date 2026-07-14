@@ -8,6 +8,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float acceleration = 5f;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private float roadBound;
     [SerializeField] private float bound;
     [SerializeField] private float boundForce;
     [SerializeField] private float boundStart;
@@ -98,9 +99,9 @@ public class CarMovement : MonoBehaviour
         //
 
         //Handle rotation visual
-        float rotationAngle = currentSpeed * rotationScale;
-        float smoothedY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, smoothedY, transform.localEulerAngles.z);
+        float rotationAngle = (currentSpeed/moveSpeed) * rotationScale;
+        float targetY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
+        rb.angularVelocity += new Vector3(rb.angularVelocity.x, (targetY - transform.localEulerAngles.y) * rotationSpeed, rb.angularVelocity.z);
         //
 
         //Set scroll speeds globally

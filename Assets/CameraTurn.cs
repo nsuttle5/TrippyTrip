@@ -10,11 +10,20 @@ public class CameraTurn : MonoBehaviour
     
     public float xRotation = 0f;
     public float yRotation = 0f;
+    public GameObject testCamera;
 
     public static bool cursorLocked = true;
     
     void LateUpdate()
     {
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.tKey.wasPressedThisFrame)
+            {
+                testCamera.SetActive(!testCamera.activeSelf);
+                GetComponent<Camera>().enabled = !testCamera.activeSelf;
+            }
+        }
         SetCursorLocked(cursorLocked);
         if(!cursorLocked) return;
 
