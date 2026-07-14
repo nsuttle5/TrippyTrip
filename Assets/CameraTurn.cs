@@ -7,13 +7,30 @@ public class CameraTurn : MonoBehaviour
     public Vector2 sensitivity = new Vector2(100f, 100f);
     public Vector2 UpDownClamp = new Vector2(-30, 60);
     public float rotationSmoothing = 0;
-    
+
+    [Header("Zoom")]
+    public float zoomFieldOfView = 45f;
+    public float zoomSmoothTime = 0.12f;
+
     public float xRotation = 0f;
     public float yRotation = 0f;
     public GameObject testCamera;
 
     public static bool cursorLocked = true;
-    
+
+    private Camera _camera;
+    private float _defaultFieldOfView;
+    private float _zoomVelocity;
+
+    private void Awake()
+    {
+        _camera = GetComponent<Camera>();
+        if (_camera != null)
+        {
+            _defaultFieldOfView = _camera.fieldOfView;
+        }
+    }
+
     void LateUpdate()
     {
         if (Keyboard.current != null)
@@ -24,8 +41,22 @@ public class CameraTurn : MonoBehaviour
                 GetComponent<Camera>().enabled = !testCamera.activeSelf;
             }
         }
+
+        if (_camera != null)
+        {
+            float targetFieldOfView = Mouse.current != null && Mouse.current.rightButton.isPressed
+                ? zoomFieldOfView
+                : _defaultFieldOfView;
+
+            _camera.fieldOfView = Mathf.SmoothDamp(
+                _camera.fieldOfView,
+                targetFieldOfView,
+                ref _zoomVelocity,
+                zoomSmoothTime);
+        }
+
         SetCursorLocked(cursorLocked);
-        if(!cursorLocked) return;
+        if (!cursorLocked) return;
 
         // Get mouse input from the new Input System
         Vector2 mouseDelta = Vector2.zero;

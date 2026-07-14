@@ -1967,6 +1967,8 @@ MonoBehaviour:
   sensitivity: {x: 0.25, y: 0.25}
   UpDownClamp: {x: -30, y: 60}
   rotationSmoothing: 20
+  zoomFieldOfView: 45
+  zoomSmoothTime: 0.12
   xRotation: 0
   yRotation: 0
   testCamera: {fileID: 0}
@@ -2675,13 +2677,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f225e9469aa532d43afcdfb590d47bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WheelTurn
-  wheelModel: {fileID: 1733995687}
+  wheelModel: {fileID: 2083413900}
   steeringAxis: {x: 1, y: 0, z: 0}
   maxTurnAngle: 50
   turnResponseSpeed: 200
   returnSpeed: 220
   carBody: {fileID: 0}
   speedInfluence: 1
+--- !u!4 &2083413900 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3983353918920824184, guid: 42bdc443e75ef7845a7c023f42be152b, type: 3}
+  m_PrefabInstance: {fileID: 537809231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
