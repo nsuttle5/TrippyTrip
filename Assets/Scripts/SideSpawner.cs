@@ -23,7 +23,7 @@ public class SideSpawner : MonoBehaviour
         public GameObject _levelPrefab;
 
         // percent chance the given object is spawned 
-        [SerializeField, Range(0.0f, 0.05f)]
+        [SerializeField, Range(0.0f, 1.0f)]
         public float _spawnFrequency = 0.02f;
 
         // min X value the item will spawn as a percentage of the whole spawn range
@@ -86,13 +86,13 @@ public class SideSpawner : MonoBehaviour
             System.Random rand = new System.Random();
 
             // spawns item on the left
-            if (levelModel._spawnFrequency > rand.NextDouble())
+            if (levelModel._spawnFrequency * CarMovement.scrollSpeed / 50 > rand.NextDouble())
             {
                 Spawn(levelModel, false);
             }
 
             // spawns item on the right
-            if (levelModel._spawnFrequency > rand.NextDouble())
+            if (levelModel._spawnFrequency * CarMovement.scrollSpeed / 50 > rand.NextDouble())
             {
                 Spawn(levelModel, true);
             }
@@ -109,6 +109,9 @@ public class SideSpawner : MonoBehaviour
 
         float xSpawnPos = ((maxX - minX) * (float)rand.NextDouble() + _minSpawnRange) * side;
 
-        Instantiate(levelModel._levelPrefab, new(xSpawnPos, 0, transform.position.z), Quaternion.identity);
+        GameObject sideObj = Instantiate(levelModel._levelPrefab, new(xSpawnPos, 0, transform.position.z), Quaternion.identity);
+
+        SideObjectScroll scroll = sideObj.AddComponent<SideObjectScroll>();
+        scroll.m_destroyZ = _destroyZ;
     }
 }
