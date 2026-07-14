@@ -367,13 +367,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346764635}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 300}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +621,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4602946005598009437, guid: 7b35efb32a4bc4b4f93f7a7883343e95, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1361672975}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4826633898497480617, guid: 7b35efb32a4bc4b4f93f7a7883343e95, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1733995688}
   m_SourcePrefab: {fileID: 100100000, guid: 7b35efb32a4bc4b4f93f7a7883343e95, type: 3}
 --- !u!1 &832575517
 GameObject:
@@ -850,6 +853,21 @@ MonoBehaviour:
   boundStart: 2
   rotationScale: 2
   rotationSpeed: 500
+  enableShrinkMechanic: 1
+  shrinkKey: 51
+  shrinkScaleMultiplier: 0.35
+  shrinkDuration: 2
+  shrinkTransitionSpeed: 8
+  enableLaunchMechanic: 1
+  launchKey: 1
+  launchVelocity: 15
+  fallAcceleration: 25
+  enableBoostMechanic: 1
+  boostKey: 55
+  boostSpeedMultiplier: 2
+  boostDuration: 1.5
+  baseScrollSpeed: 1
+  scrollSpeedTransitionSpeed: 5
 --- !u!65 &1471692247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -971,6 +989,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1733995686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4826633898497480617, guid: 7b35efb32a4bc4b4f93f7a7883343e95, type: 3}
+  m_PrefabInstance: {fileID: 623427389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1733995687 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8090965507379496435, guid: 7b35efb32a4bc4b4f93f7a7883343e95, type: 3}
+  m_PrefabInstance: {fileID: 623427389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733995688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733995686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f225e9469aa532d43afcdfb590d47bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WheelTurn
+  wheelModel: {fileID: 1733995687}
+  steeringAxis: {x: 1, y: 0, z: 0}
+  maxTurnAngle: 50
+  turnResponseSpeed: 200
+  returnSpeed: 220
+  carBody: {fileID: 0}
+  speedInfluence: 1
 --- !u!1 &1865478640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,13 +1155,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921242648}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.04, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
