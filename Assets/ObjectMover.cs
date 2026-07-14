@@ -18,7 +18,8 @@ public class ObjectMover : MonoBehaviour
 
             if(child.transform.position.z < loopBackward)
             {
-                child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y, loopForward);
+                //child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y, loopForward);
+                Destroy(child.gameObject);
             }
         }
     }
