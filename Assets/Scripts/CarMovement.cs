@@ -47,8 +47,25 @@ public class CarMovement : MonoBehaviour
     private bool _isShrinking;
     private bool _isLaunched;
     private bool _isBoosting;
+    private bool _isPaused;
     private float _currentMoveSpeedMultiplier = 1;
     private int _globalPropertyId;
+
+    public bool IsPaused => _isPaused;
+
+    public void SetPaused(bool paused)
+    {
+        _isPaused = paused;
+
+        if (paused)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            scrollSpeed = 0f;
+        }
+
+        CameraTurn.cursorLocked = !paused;
+    }
 
     void Start()
     {
@@ -59,15 +76,17 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
+        if (_isPaused) return;
+
         //Set scroll speeds globally
         float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
-        scrollTime+=Mathf.Repeat(Time.deltaTime * scrollSpeed, 1f);
+        scrollTime += Mathf.Repeat(Time.deltaTime * scrollSpeed, 1f);
         Shader.SetGlobalFloat(_globalPropertyId, scrollTime);
-        //
+
 
         //Handle boosts and effects
         HandleMechanicInput();
-        //
+
 
         //Left and right movement
         float horizontalInput = GetHorizontalInput();
@@ -81,8 +100,8 @@ public class CarMovement : MonoBehaviour
         float effectiveMoveSpeed = moveSpeed * _currentMoveSpeedMultiplier;
         float desiredSpeed = horizontalInput * effectiveMoveSpeed - closeness * boundForce * effectiveMoveSpeed * Mathf.Sign(position.x);
         float currentSpeed = rb.linearVelocity.x;
-        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime) * Mathf.Pow(scrollSpeed/targetScrollSpeed, speedTurnCorrelation);
-        //
+        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime) * Mathf.Pow(scrollSpeed / targetScrollSpeed, speedTurnCorrelation);
+
 
         //Vertical movement
         float verticalVelocity = rb.linearVelocity.y;
@@ -99,21 +118,20 @@ public class CarMovement : MonoBehaviour
                 _isLaunched = false;
             }
         }
-        //
+
 
         //Apply velocities
         rb.linearVelocity = new Vector3(newSpeed, verticalVelocity, rb.linearVelocity.z);
-        //
+
 
         //Handle rotation visual
-        float rotationAngle = (currentSpeed/moveSpeed) * rotationScale;
+        float rotationAngle = (currentSpeed / moveSpeed) * rotationScale;
         float targetY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
         rb.angularVelocity += new Vector3(rb.angularVelocity.x, (targetY - transform.localEulerAngles.y) * rotationSpeed, rb.angularVelocity.z);
-        //
 
-        if(position.x > roadBound || position.x < -roadBound)
+        if (position.x > roadBound || position.x < -roadBound)
         {
-            scrollSpeed = scrollSpeed*.999f;
+            scrollSpeed = scrollSpeed * .999f;
         }
         else
         {

@@ -20,6 +20,8 @@ public class SpeedOdometer : MonoBehaviour
     private float _displayMiles;
     private float _gainMultiplier = 1f;
 
+    public float TotalMiles => _displayMiles;
+
     private void Awake()
     {
         if (odometerText == null)
