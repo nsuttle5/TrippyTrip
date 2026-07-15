@@ -13,7 +13,20 @@ public class TripController : MonoBehaviour
         Lightning   = 1 << 4  // 16
     }
 
+    public Vector3 curve;
+
     private TripState _tripState;
+
+    private static readonly int GlobalCurveId =
+        Shader.PropertyToID("_My_Global_Curve");
+
+    void Update()
+    {
+        Shader.SetGlobalVector(
+            GlobalCurveId,
+            new Vector4(curve.x, curve.y, curve.z, 0f)
+        );
+    }
     public TripState tripState
     {
         get => _tripState;
@@ -34,5 +47,6 @@ public class TripController : MonoBehaviour
         {
             Debug.Log("Fire is active!");
         }
+        
     }
 }
