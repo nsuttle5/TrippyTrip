@@ -694,7 +694,7 @@ MonoBehaviour:
   - canvasGroup: {fileID: 1111782217}
   beginButton: {fileID: 1530105274}
   beginButtonGroup: {fileID: 1530105270}
-  nextSceneName: 
+  nextSceneName: IntroCutsceneTest
   delayBetweenSteps: 1
   fadeInDuration: 0.75
   fadeOutDuration: 0.5
