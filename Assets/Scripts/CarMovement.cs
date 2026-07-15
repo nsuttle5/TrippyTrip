@@ -53,6 +53,12 @@ public class CarMovement : MonoBehaviour
 
     public bool IsPaused => _isPaused;
 
+    public float BaseScrollSpeed
+    {
+        get => baseScrollSpeed;
+        set => baseScrollSpeed = Mathf.Max(0f, value);
+    }
+
     public void SetPaused(bool paused)
     {
         _isPaused = paused;

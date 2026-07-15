@@ -713,6 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566760114}
   - component: {fileID: 566760113}
+  - component: {fileID: 566760115}
   m_Layer: 0
   m_Name: Trippin
   m_TagString: Untagged
@@ -748,6 +749,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566760115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566760112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9a7a59c8383184ca8bcc648957d2ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedManager
+  carMovement: {fileID: 2029702028}
+  odometer: {fileID: 2029702029}
+  startingSpeed: 0.05
+  speedRampPerSecond: 0.15
+  maxBaseSpeed: 3
+  stalledGraceDuration: 1.5
+  loseSpeedThreshold: 0.15
+  openingGraceDuration: 4
+  loseSceneName: LoseScene
+  onLose:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &682983537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1587,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55495dc0b942ea428175ae3ab1627e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarMovement
+--- !u!114 &2029702029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2416535197243991784, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+  m_PrefabInstance: {fileID: 2029702027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5f24c2e24e7d044bdaff93ad5b4ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedOdometer
 --- !u!1 &2040387940
 GameObject:
   m_ObjectHideFlags: 0
