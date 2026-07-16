@@ -1271,6 +1271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5373021616567329978}
+  - component: {fileID: 934932137441158523}
   m_Layer: 0
   m_Name: MC2_P
   m_TagString: Untagged
@@ -1308,6 +1309,27 @@ Transform:
   - {fileID: 8454832947095494298}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &934932137441158523
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538632210977739288}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.807162, z: 4.7437506}
+  m_Center: {x: 0, y: 0.9035808, z: -0.21381152}
 --- !u!1 &8984171824838115155
 GameObject:
   m_ObjectHideFlags: 0

@@ -773,6 +773,65 @@ MonoBehaviour:
   onLose:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &625496284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625496285}
+  - component: {fileID: 625496286}
+  m_Layer: 0
+  m_Name: ObstacleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &625496285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625496284}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.78655, y: -0.91907, z: 179.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1555939148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &625496286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625496284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba60c6677f902da4bbb6dbf37fac4096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
+  carMovement: {fileID: 2029702028}
+  allObstacles:
+  - {fileID: 11400000, guid: 55ba1a43d4f18c3498c259b5306ff5c3, type: 2}
+  allowDuplicatesInPool: 1
+  basePoolSize: 2
+  poolSizeGrowthPerLeg: 1
+  baseMinSpawnInterval: 2.5
+  baseMaxSpawnInterval: 4.5
+  intervalReductionPerLeg: 0.2
+  minPossibleInterval: 0.6
+  leftLaneX: -3
+  centerLaneX: 0
+  rightLaneX: 3
+  spawnPoint: {fileID: 625496285}
+  destroyZ: -200
 --- !u!1 &682983537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1463,7 @@ Transform:
   m_Children:
   - {fileID: 2064493498}
   - {fileID: 682983539}
+  - {fileID: 625496285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1772786034 stripped
@@ -1625,12 +1685,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.2130928, y: 1, z: 1}
+  m_Center: {x: 0.033471882, y: 0, z: 0}
 --- !u!1 &2040387940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1775,9 @@ MonoBehaviour:
   initialGapMiles: 0.5
   gapGrowthMultiplier: 1.2
   stationDespawnDelay: 10
+  onStationDeparted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
