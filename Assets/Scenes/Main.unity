@@ -1406,6 +1406,11 @@ Transform:
   - {fileID: 682983539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1772786034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+  m_PrefabInstance: {fileID: 2029702027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1921242648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,17 +1576,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2029702036}
   m_SourcePrefab: {fileID: 100100000, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
 --- !u!114 &2029702028 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1540666164508069095, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
   m_PrefabInstance: {fileID: 2029702027}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1772786034}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55495dc0b942ea428175ae3ab1627e4, type: 3}
@@ -1598,6 +1610,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5f24c2e24e7d044bdaff93ad5b4ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedOdometer
+--- !u!65 &2029702036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772786034}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2040387940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,7 +1656,7 @@ Transform:
   m_GameObject: {fileID: 2040387940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 500}
+  m_LocalPosition: {x: -3.3, y: -0.7, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1675,12 +1708,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GasStationCheckpointManager
   carMovement: {fileID: 2029702028}
-  odometer: {fileID: 0}
+  odometer: {fileID: 2029702029}
   gasStationPrefab: {fileID: 3181932361235738768, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
   spawnPoint: {fileID: 2040387941}
   shopUI: {fileID: 1508030451}
   initialGapMiles: 0.5
-  gapGrowthMultiplier: 1
+  gapGrowthMultiplier: 1.2
   stationDespawnDelay: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
