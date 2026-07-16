@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GasStationCheckpointManager : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class GasStationCheckpointManager : MonoBehaviour
     [SerializeField] private CarMovement carMovement;
     [SerializeField] private SpeedOdometer odometer;
     [SerializeField] private GameObject gasStationPrefab;
-    [Tooltip("Where new stations appear -- somewhere far down the road, same idea as your SideSpawner's spawn Z.")]
+
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GasStationShopUI shopUI;
 
@@ -15,8 +16,12 @@ public class GasStationCheckpointManager : MonoBehaviour
     [SerializeField] private float gapGrowthMultiplier = 1.2f;
 
     [Header("Despawn")]
-    [Tooltip("Seconds to wait after Continue before the station is actually destroyed, so it scrolls away naturally instead of popping out.")]
+
     [SerializeField] private float stationDespawnDelay = 2f;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent onStationDeparted;
+
 
     private float _currentGapMiles;
     private float _nextSpawnMiles;
@@ -46,7 +51,7 @@ public class GasStationCheckpointManager : MonoBehaviour
 
         SideObjectScroll scroll = _activeStation.GetComponent<SideObjectScroll>();
         if (scroll == null) scroll = _activeStation.AddComponent<SideObjectScroll>();
-        scroll.m_destroyZ = float.NegativeInfinity; // station is destroyed explicitly on Continue, not by scroll-off
+        scroll.m_destroyZ = float.NegativeInfinity;
 
         GasStationTrigger trigger = _activeStation.GetComponentInChildren<GasStationTrigger>();
         if (trigger == null) trigger = _activeStation.AddComponent<GasStationTrigger>();
@@ -72,5 +77,7 @@ public class GasStationCheckpointManager : MonoBehaviour
 
         _currentGapMiles *= gapGrowthMultiplier;
         _nextSpawnMiles = odometer.TotalMiles + _currentGapMiles;
+
+        onStationDeparted?.Invoke();
     }
 }

@@ -25,6 +25,8 @@ public class SpeedManager : MonoBehaviour
     [SerializeField] private string loseSceneName = "LoseScene";
     [SerializeField] private UnityEvent onLose;
 
+    [SerializeField, Range(0f, 1f)] private float basePenaltyMultiplier = 1f;
+
     private float _roundTime;
     private float _timeBelowThreshold;
     private bool _hasLost;
@@ -84,6 +86,7 @@ public class SpeedManager : MonoBehaviour
     public void ApplySpeedPenalty(float amount)
     {
         CarMovement.scrollSpeed = Mathf.Max(0f, CarMovement.scrollSpeed - amount);
+        carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - amount * basePenaltyMultiplier);
     }
 
     private void TriggerLose()
