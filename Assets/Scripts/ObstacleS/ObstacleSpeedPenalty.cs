@@ -6,25 +6,32 @@ public class ObstacleSpeedPenalty : MonoBehaviour
     [SerializeField] private float speedPenalty = 1.5f;
     [SerializeField] private bool destroySelfOnHit = true;
     [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] private GameObject destroyParticle;
 
     private bool _hasHit;
 
     private void Awake()
     {
         Collider col = GetComponent<Collider>();
-        if (col != null) col.isTrigger = true;
     }
 
-    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds)
+    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds, GameObject particle)
     {
         speedPenalty = penalty;
         destroySelfOnHit = destroyOnHit;
         hitSounds = sounds;
+        destroyParticle = particle;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_hasHit) return;
+        if (_hasHit) 
+        {
+            if (!other.CompareTag("ground")) return;
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            return;
+        };
         if (!other.CompareTag("Player")) return;
 
         _hasHit = true;
@@ -40,6 +47,13 @@ public class ObstacleSpeedPenalty : MonoBehaviour
             if (clip != null) AudioSource.PlayClipAtPoint(clip, transform.position);
         }
 
-        if (destroySelfOnHit) Destroy(gameObject);
+        if (destroySelfOnHit) 
+        {
+            Vector3 direction = (transform.position-other.transform.position).normalized+new Vector3(0, 1, 0);
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().AddForce(direction*30, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddTorque(direction*10, ForceMode.Impulse);
+            Destroy(gameObject, 10);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class CameraTurn : MonoBehaviour
     public Transform Player;
     public Vector2 sensitivity = new Vector2(100f, 100f);
     public Vector2 UpDownClamp = new Vector2(-30, 60);
+    public Vector2 LeftRightClamp = new Vector2(-110, 110);
     public float rotationSmoothing = 0;
 
     [Header("Zoom")]
@@ -72,7 +73,8 @@ public class CameraTurn : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, UpDownClamp.x, UpDownClamp.y);
         yRotation += mouseX;
-        yRotation = Mathf.Repeat(yRotation, 360f); // Keep yRotation within 0-360 degrees
+        //yRotation = Mathf.Repeat(yRotation, 360f); // Keep yRotation within 0-360 degrees
+        yRotation = Mathf.Clamp(yRotation, LeftRightClamp.x, LeftRightClamp.y);
 
         // Apply rotations with angle wrap handling
         float smoothPitch = rotationSmoothing > 0

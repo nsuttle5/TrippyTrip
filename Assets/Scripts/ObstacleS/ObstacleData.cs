@@ -35,4 +35,6 @@ public class ObstacleData : ScriptableObject
     [Header("Sound Effects")]
     [Tooltip("One is picked at random when the player hits this obstacle. Leave empty for silent.")]
     public AudioClip[] hitSounds;
+    [Header("Particles")]
+    public GameObject deathParticle;
 }

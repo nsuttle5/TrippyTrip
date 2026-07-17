@@ -110,8 +110,9 @@ public class SideSpawner : MonoBehaviour
         float xSpawnPos = ((maxX - minX) * (float)rand.NextDouble() + _minSpawnRange) * side;
 
         GameObject sideObj = Instantiate(levelModel._levelPrefab, new(xSpawnPos, 0, transform.position.z), Quaternion.identity);
+        sideObj.transform.SetParent(ObjectMover.worldMove);
 
-        SideObjectScroll scroll = sideObj.AddComponent<SideObjectScroll>();
-        scroll.m_destroyZ = _destroyZ;
+        //SideObjectScroll scroll = sideObj.AddComponent<SideObjectScroll>();
+        //scroll.m_destroyZ = _destroyZ;
     }
 }
