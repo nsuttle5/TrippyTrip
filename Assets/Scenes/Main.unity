@@ -1350,6 +1350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971776592}
+  - component: {fileID: 971776593}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1372,6 +1373,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7670142379622567460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &971776593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971776591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bccba0716e6314296b293f74576fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hand
+  handTarget: {fileID: 971776592}
+  wheel: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  joints: []
+  positionLerpSpeed: 20
+  rotationSpeed: 360
 --- !u!1 &1068792057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,10 +1557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   handTarget: {fileID: 1493836611}
   wheel: {fileID: 1142551488}
-  offset: {x: 0.1, y: 0, z: 0}
+  offset: {x: -0.14, y: 0.37, z: 0.31}
   joints:
   - {fileID: 5776679861820221188}
   - {fileID: 710689521855928917}
+  positionLerpSpeed: 20
   rotationSpeed: 360
 --- !u!1 &1508030449
 GameObject:
@@ -1679,36 +1699,14 @@ GameObject:
   - component: {fileID: 1921242652}
   - component: {fileID: 1921242651}
   - component: {fileID: 1921242650}
-  - component: {fileID: 1921242649}
+  - component: {fileID: 1921242653}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1921242649
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921242648}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1921242650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1781,6 +1779,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264687493}
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+--- !u!65 &1921242653
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921242648}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.000001, y: 2.0000005, z: 0.00000047862534}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2029702027
 PrefabInstance:
   m_ObjectHideFlags: 0

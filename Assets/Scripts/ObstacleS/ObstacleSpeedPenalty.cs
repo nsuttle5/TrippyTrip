@@ -6,6 +6,7 @@ public class ObstacleSpeedPenalty : MonoBehaviour
     [SerializeField] private float speedPenalty = 1.5f;
     [SerializeField] private bool destroySelfOnHit = true;
     [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] private GameObject destroyParticle;
 
     private bool _hasHit;
 
@@ -14,17 +15,24 @@ public class ObstacleSpeedPenalty : MonoBehaviour
         Collider col = GetComponent<Collider>();
     }
 
-    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds)
+    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds, GameObject particle)
     {
         speedPenalty = penalty;
         destroySelfOnHit = destroyOnHit;
         hitSounds = sounds;
+        destroyParticle = particle;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_hasHit) return;
-        if (!other.attachedRigidbody.CompareTag("Player")) return;
+        if (_hasHit) 
+        {
+            if (!other.CompareTag("ground")) return;
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            return;
+        };
+        if (!other.CompareTag("Player")) return;
 
         _hasHit = true;
 
@@ -45,7 +53,7 @@ public class ObstacleSpeedPenalty : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
             GetComponent<Rigidbody>().AddForce(direction*30, ForceMode.Impulse);
             GetComponent<Rigidbody>().AddTorque(direction*10, ForceMode.Impulse);
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 10);
         }
     }
 }

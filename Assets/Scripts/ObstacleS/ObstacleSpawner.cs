@@ -130,6 +130,6 @@ public class ObstacleSpawner : MonoBehaviour
 
         ObstacleSpeedPenalty penalty = instance.GetComponent<ObstacleSpeedPenalty>();
         if (penalty == null) penalty = instance.AddComponent<ObstacleSpeedPenalty>();
-        penalty.Configure(data.speedPenalty, data.destroySelfOnHit, data.hitSounds);
+        penalty.Configure(data.speedPenalty, data.destroySelfOnHit, data.hitSounds, data.deathParticle);
     }
 }

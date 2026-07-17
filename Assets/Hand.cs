@@ -11,6 +11,7 @@ public class Hand : MonoBehaviour
     public float rotationSpeed = 360f;
 
     bool initialized;
+    public static Transform interacting;
 
     void Update()
     {
