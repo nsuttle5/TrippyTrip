@@ -124,9 +124,11 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject instance = Instantiate(data.modelPrefab, spawnPos, spawnRot);
         instance.transform.localScale = Vector3.Scale(instance.transform.localScale, data.scaleMultiplier);
 
-        SideObjectScroll scroll = instance.GetComponent<SideObjectScroll>();
-        if (scroll == null) scroll = instance.AddComponent<SideObjectScroll>();
-        scroll.m_destroyZ = destroyZ;
+        //SideObjectScroll scroll = instance.GetComponent<SideObjectScroll>();
+        //if (scroll == null) scroll = instance.AddComponent<SideObjectScroll>();
+        //scroll.m_destroyZ = destroyZ;
+
+        instance.transform.SetParent(ObjectMover.worldMove);
 
         ObstacleSpeedPenalty penalty = instance.GetComponent<ObstacleSpeedPenalty>();
         if (penalty == null) penalty = instance.AddComponent<ObstacleSpeedPenalty>();

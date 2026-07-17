@@ -49,9 +49,11 @@ public class GasStationCheckpointManager : MonoBehaviour
             spawnPoint.position,
             spawnPoint.rotation * gasStationPrefab.transform.rotation);
 
-        SideObjectScroll scroll = _activeStation.GetComponent<SideObjectScroll>();
-        if (scroll == null) scroll = _activeStation.AddComponent<SideObjectScroll>();
-        scroll.m_destroyZ = float.NegativeInfinity;
+        _activeStation.transform.SetParent(ObjectMover.worldMove);
+
+        //SideObjectScroll scroll = _activeStation.GetComponent<SideObjectScroll>();
+        //if (scroll == null) scroll = _activeStation.AddComponent<SideObjectScroll>();
+        //scroll.m_destroyZ = float.NegativeInfinity;
 
         GasStationTrigger trigger = _activeStation.GetComponentInChildren<GasStationTrigger>();
         if (trigger == null) trigger = _activeStation.AddComponent<GasStationTrigger>();

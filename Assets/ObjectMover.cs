@@ -5,7 +5,13 @@ public class ObjectMover : MonoBehaviour
     public Vector3 direction;
     private float setSpeed;
 
-    public float loopForward, loopBackward;
+    public float loopBackward;
+    public static Transform worldMove;
+
+    void Awake()
+    {
+        worldMove = transform;
+    }
     void Update()
     {
         setSpeed = CarMovement.scrollSpeed;
