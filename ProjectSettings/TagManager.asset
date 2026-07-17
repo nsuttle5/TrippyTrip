@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Currency
   - Coin
+  - Pricetag
   layers:
   - Default
   - TransparentFX
