@@ -12,7 +12,6 @@ public class ObstacleSpeedPenalty : MonoBehaviour
     private void Awake()
     {
         Collider col = GetComponent<Collider>();
-        if (col != null) col.isTrigger = true;
     }
 
     public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds)
@@ -25,7 +24,7 @@ public class ObstacleSpeedPenalty : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_hasHit) return;
-        if (!other.CompareTag("Player")) return;
+        if (!other.attachedRigidbody.CompareTag("Player")) return;
 
         _hasHit = true;
 
@@ -40,6 +39,13 @@ public class ObstacleSpeedPenalty : MonoBehaviour
             if (clip != null) AudioSource.PlayClipAtPoint(clip, transform.position);
         }
 
-        if (destroySelfOnHit) Destroy(gameObject);
+        if (destroySelfOnHit) 
+        {
+            Vector3 direction = (transform.position-other.transform.position).normalized+new Vector3(0, 1, 0);
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().AddForce(direction*30, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddTorque(direction*10, ForceMode.Impulse);
+            Destroy(gameObject, 5);
+        }
     }
 }

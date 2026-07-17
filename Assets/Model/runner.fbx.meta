@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fb3320b269c6394fbea9020d4d555a8
+guid: 6dc0febd4e717b44b8f562d989a6887e
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,9 +31,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction
-      takeName: Armature|ArmatureAction
-      internalID: 4781951162920444690
+      name: Armature|Armature|Armature|ArmatureAction
+      takeName: Armature|Armature|Armature|ArmatureAction
+      internalID: 6065333994261340666
       firstFrame: 0
       lastFrame: 9
       wrapMode: 0
@@ -60,9 +60,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Cube.002Action
-      takeName: Armature|Cube.002Action
-      internalID: 4828028426687900610
+      name: Armature|Armature|Armature|Cube.002Action
+      takeName: Armature|Armature|Armature|Cube.002Action
+      internalID: -320862348375987001
       firstFrame: 0
       lastFrame: 10
       wrapMode: 0
@@ -91,7 +91,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.25
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -149,7 +149,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.25
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

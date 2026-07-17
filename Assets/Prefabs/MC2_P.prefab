@@ -1272,7 +1272,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5373021616567329978}
   - component: {fileID: 934932137441158523}
-  m_Layer: 0
+  - component: {fileID: 8098688407578225902}
+  m_Layer: 7
   m_Name: MC2_P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,8 +1329,35 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.807162, z: 4.7437506}
-  m_Center: {x: 0, y: 0.9035808, z: -0.21381152}
+  m_Size: {x: 2.2671173, y: 2.0663123, z: 4.3809137}
+  m_Center: {x: -0.63355875, y: 1.0520194, z: -0.8275337}
+--- !u!54 &8098688407578225902
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538632210977739288}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8984171824838115155
 GameObject:
   m_ObjectHideFlags: 0
