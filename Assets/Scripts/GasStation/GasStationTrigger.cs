@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Attach to (or auto-added onto) the gas station prefab's trigger collider.
@@ -11,6 +13,12 @@ public class GasStationTrigger : MonoBehaviour
 {
     private GasStationCheckpointManager _manager;
     private bool _hasTriggered;
+    public Transform newCameraParent;
+
+    public GameObject shopUIRoot;
+    public Button continueButton;
+    public DoorOpen doorOpenScript;
+    public TMP_Text moneyText;
 
     private void Awake()
     {
@@ -29,6 +37,6 @@ public class GasStationTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         _hasTriggered = true;
-        _manager.OnPlayerEnteredStation();
+        _manager.OnPlayerEnteredStation(this);
     }
 }
