@@ -1713,13 +1713,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483595890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.0049418192, y: -0.9062459, z: 0.42258936, w: -0.010597766}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -181.34, z: 0}
 --- !u!114 &1483595893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6945,63 +6945,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIPanelController
   rulesPanel: {fileID: 497116592}
   creditsPanel: {fileID: 110121844}
---- !u!1001 &1724721346
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.44
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5996732
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.9759665
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d632265434aaca04f80929efd59fbe00, type: 3}
-      propertyPath: m_Name
-      value: GasStation
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d632265434aaca04f80929efd59fbe00, type: 3}
 --- !u!1 &1744940135
 GameObject:
   m_ObjectHideFlags: 0
@@ -7478,6 +7421,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &2127935429
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838303724784773674, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181932361235738768, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
+      propertyPath: m_Name
+      value: GasStation (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0681b215ccd4124689bb7d41fc7dc84, type: 3}
 --- !u!1 &2139270875
 GameObject:
   m_ObjectHideFlags: 0
@@ -7663,7 +7663,7 @@ SceneRoots:
   - {fileID: 1183574472}
   - {fileID: 629697717}
   - {fileID: 1978131148}
-  - {fileID: 1724721346}
   - {fileID: 1709010154}
   - {fileID: 1658133294}
   - {fileID: 1428585092}
+  - {fileID: 2127935429}
