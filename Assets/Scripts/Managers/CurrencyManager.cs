@@ -11,6 +11,8 @@ public class CurrencyManager : MonoBehaviour
     private TextMeshProUGUI _currencyDisplay;
 
     private int m_currencyCount = 0;
+    public Transform coinstack;
+    public float coinToScale = .02f;
     public static CurrencyManager Instance { get; private set; }
 
     void Awake()
@@ -55,6 +57,15 @@ public class CurrencyManager : MonoBehaviour
         {
             Debug.Log($"Not enough currency to buy {item.name}. Current currency: ${m_currencyCount}, Item price: ${item.price}");
             return false;
+        }
+    }
+
+    void Update()
+    {
+        if (coinstack != null)
+        {
+            float targetScale = coinToScale * m_currencyCount;
+            coinstack.localScale = Vector3.Lerp(coinstack.localScale, new Vector3(1, targetScale, 1), Time.deltaTime * 5f);
         }
     }
 }

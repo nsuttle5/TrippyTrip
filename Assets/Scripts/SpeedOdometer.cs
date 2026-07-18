@@ -6,7 +6,7 @@ public class SpeedOdometer : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Text odometerText;
     [SerializeField] private string unitSuffix = " mi";
-    [SerializeField] private int decimalPlaces = 1;
+    [SerializeField, Min(1)] private int minimumDigits = 3;
 
     [Header("Miles Conversion")]
     [SerializeField] private float milesPerSpeedUnit = 0.08f;
@@ -75,6 +75,7 @@ public class SpeedOdometer : MonoBehaviour
             return;
         }
 
-        odometerText.text = _displayMiles.ToString($"F{decimalPlaces}") + unitSuffix;
+        int wholeMiles = Mathf.Max(0, Mathf.FloorToInt(_displayMiles));
+        odometerText.text = wholeMiles.ToString($"D{minimumDigits}") + unitSuffix;
     }
 }
