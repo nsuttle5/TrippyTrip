@@ -2320,6 +2320,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3310057854003191017, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: m_Name
       value: Car
@@ -2332,6 +2336,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.103
       objectReference: {fileID: 0}
+    - target: {fileID: 9094399143923517376, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: songs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094399143923517376, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: musicVolumeMultiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094399143923517376, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: songs.Array.data[2].tune
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094399143923517376, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: songs.Array.data[2].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a2abb1660b6f474d9b89f1835ba0b5d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
