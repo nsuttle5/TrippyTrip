@@ -135,8 +135,6 @@ public class GasStationCheckpointManager : MonoBehaviour
 
     private IEnumerator OnContinuePressedRoutine()
     {
-        carMovement.SetPaused(false);
-
         if (_activeStation != null)
         {
             GasStationTrigger trigger = _activeStation.GetComponent<GasStationTrigger>();
@@ -160,6 +158,8 @@ public class GasStationCheckpointManager : MonoBehaviour
                 yield return null;
             }
         }
+
+        carMovement.SetPaused(false);
 
         if (_activeStation != null) Destroy(_activeStation, stationDespawnDelay);
         _activeStation = null;
