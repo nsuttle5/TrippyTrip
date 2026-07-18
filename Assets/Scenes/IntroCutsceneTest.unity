@@ -6915,7 +6915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManagement
   loadSceneButton: {fileID: 1113515753}
-  sceneName: Main
+  sceneName: CutsceneScene
 --- !u!4 &1709010154
 Transform:
   m_ObjectHideFlags: 0
