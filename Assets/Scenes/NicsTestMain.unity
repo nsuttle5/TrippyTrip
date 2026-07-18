@@ -888,7 +888,7 @@ MonoBehaviour:
   cruisingSpeedTarget: 4
   passiveDecayPerSecond: 0.02
   emptyGasDecayPerSecond: 1.5
-  maxGas: 100
+  maxGas: 40
   passiveGasDrainPerSecond: 1
   recoveryExtraGasDrainPerSecond: 3
   gasSuffix: ' gas'

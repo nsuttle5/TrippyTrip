@@ -29,6 +29,8 @@ public class SpeedManager : MonoBehaviour
     [SerializeField] private float passiveGasDrainPerSecond = 1f;
     [Tooltip("Extra gas drained per second on top of the passive drain, while scrollSpeed is below the target and catching back up (e.g. recovering from an obstacle hit).")]
     [SerializeField] private float recoveryExtraGasDrainPerSecond = 3f;
+    [Tooltip("Extra gas drained per second while boost is active.")]
+    [SerializeField] private float boostExtraGasDrainPerSecond = 4f;
     [SerializeField] private string gasSuffix = " gas";
     [SerializeField] private int gasDecimalPlaces = 0;
 
@@ -81,6 +83,16 @@ public class SpeedManager : MonoBehaviour
 
     private void UpdateSpeedCurve()
     {
+        bool isEmpty = _currentGas <= 0f;
+
+        if (isEmpty)
+        {
+            carMovement.BaseScrollSpeed = Mathf.Max(
+                0f,
+                carMovement.BaseScrollSpeed - emptyGasDecayPerSecond * Time.deltaTime);
+            return;
+        }
+
         if (!_hasReachedCruisingSpeed)
         {
             carMovement.BaseScrollSpeed = Mathf.Min(
@@ -94,18 +106,20 @@ public class SpeedManager : MonoBehaviour
         }
         else
         {
-            bool isEmpty = _currentGas <= 0f;
-            float decayRate = isEmpty ? emptyGasDecayPerSecond : passiveDecayPerSecond;
-            carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - decayRate * Time.deltaTime);
+            carMovement.BaseScrollSpeed = Mathf.Max(
+                0f,
+                carMovement.BaseScrollSpeed - passiveDecayPerSecond * Time.deltaTime);
         }
     }
 
     private void UpdateGas()
     {
         bool isRecovering = CarMovement.scrollSpeed < carMovement.BaseScrollSpeed - 0.01f;
+        bool isBoosting = carMovement.IsBoosting;
 
         float drain = passiveGasDrainPerSecond * Time.deltaTime;
         if (isRecovering) drain += recoveryExtraGasDrainPerSecond * Time.deltaTime;
+        if (isBoosting) drain += boostExtraGasDrainPerSecond * Time.deltaTime;
 
         _currentGas = Mathf.Max(0f, _currentGas - drain);
         RefreshGasDisplay();
@@ -135,6 +149,7 @@ public class SpeedManager : MonoBehaviour
 
     public void ApplySpeedPenalty(float amount)
     {
+        carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - amount);
         CarMovement.scrollSpeed = Mathf.Max(0f, CarMovement.scrollSpeed - amount);
     }
 

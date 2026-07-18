@@ -25,13 +25,14 @@ public class ObstacleSpeedPenalty : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_hasHit) 
+        if (_hasHit)
         {
             if (!other.CompareTag("ground")) return;
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
             return;
-        };
+        }
+        ;
         if (!other.CompareTag("Player")) return;
 
         _hasHit = true;
@@ -47,12 +48,12 @@ public class ObstacleSpeedPenalty : MonoBehaviour
             if (clip != null) AudioSource.PlayClipAtPoint(clip, transform.position);
         }
 
-        if (destroySelfOnHit) 
+        if (destroySelfOnHit)
         {
-            Vector3 direction = (transform.position-other.transform.position).normalized+new Vector3(0, 1, 0);
+            Vector3 direction = (transform.position - other.transform.position).normalized + new Vector3(0, 1, 0);
             GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().AddForce(direction*30, ForceMode.Impulse);
-            GetComponent<Rigidbody>().AddTorque(direction*10, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(direction * 30, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddTorque(direction * 10, ForceMode.Impulse);
             Destroy(gameObject, 10);
         }
     }
