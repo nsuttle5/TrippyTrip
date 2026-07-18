@@ -1642,6 +1642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassengerSeatSpawner
   allItems:
   - {fileID: 11400000, guid: 9f1de32d5f2a9894f9ec940550b8fba1, type: 2}
+  - {fileID: 11400000, guid: 35afc8e1fcf831a458bcdc0a8fb739c8, type: 2}
   passengerSeatAnchor: {fileID: 1352346707}
   minGapBetweenSpawns: 5
   maxGapBetweenSpawns: 15
