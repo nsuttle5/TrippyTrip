@@ -765,9 +765,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedManager
   carMovement: {fileID: 2029702028}
   odometer: {fileID: 2029702029}
+  gasText: {fileID: 0}
   startingSpeed: 0.05
-  speedRampPerSecond: 0.15
-  maxBaseSpeed: 3
+  initialRampPerSecond: 0.15
+  cruisingSpeedTarget: 4
+  passiveDecayPerSecond: 0.02
+  emptyGasDecayPerSecond: 1.5
+  maxGas: 100
+  passiveGasDrainPerSecond: 1
+  recoveryExtraGasDrainPerSecond: 3
+  boostExtraGasDrainPerSecond: 4
+  gasSuffix: ' gas'
+  gasDecimalPlaces: 0
   stalledGraceDuration: 1.5
   loseSpeedThreshold: 0.15
   openingGraceDuration: 4
@@ -775,7 +784,6 @@ MonoBehaviour:
   onLose:
     m_PersistentCalls:
       m_Calls: []
-  basePenaltyMultiplier: 1
 --- !u!1 &625496284
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
   carMovement: {fileID: 2029702028}
   allObstacles:
+  - {fileID: 11400000, guid: a83c5f783145500468d26eebaaa6cc25, type: 2}
   - {fileID: 11400000, guid: 55ba1a43d4f18c3498c259b5306ff5c3, type: 2}
   allowDuplicatesInPool: 1
   basePoolSize: 2
