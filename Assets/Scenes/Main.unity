@@ -832,7 +832,8 @@ MonoBehaviour:
   allObstacles:
   - {fileID: 11400000, guid: a83c5f783145500468d26eebaaa6cc25, type: 2}
   - {fileID: 11400000, guid: 55ba1a43d4f18c3498c259b5306ff5c3, type: 2}
-  allowDuplicatesInPool: 1
+  - {fileID: 11400000, guid: c120c4385d2f9e147a5b39c1269e5ac9, type: 2}
+  allowDuplicatesInPool: 0
   basePoolSize: 2
   poolSizeGrowthPerLeg: 1
   baseMinSpawnInterval: 2.5
