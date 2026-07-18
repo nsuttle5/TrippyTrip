@@ -726,6 +726,61 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &414520650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414520651}
+  - component: {fileID: 414520652}
+  m_Layer: 0
+  m_Name: ScenarySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414520651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414520650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1555939148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414520652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414520650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c140160ec2cf9bf42ac6016588bd48d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScenerySpawner
+  spawnPoint: {fileID: 625496285}
+  allScenery:
+  - {fileID: 11400000, guid: e49eaafa78f388d44ab4a657fb938027, type: 2}
+  leftSideX: -18
+  rightSideX: 18
+  inwardRotationLeft: {x: 0, y: 90, z: 0}
+  inwardRotationRight: {x: 0, y: -90, z: 0}
+  minSpawnInterval: 5
+  maxSpawnInterval: 10
+  startOnPlay: 1
+  avoidImmediateRepeats: 1
 --- !u!1 &459266535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6dc0febd4e717b44b8f562d989a6887e, type: 3}
@@ -1940,6 +1995,7 @@ Transform:
   - {fileID: 2064493498}
   - {fileID: 682983539}
   - {fileID: 625496285}
+  - {fileID: 414520651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1555939149
