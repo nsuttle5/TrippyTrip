@@ -105,9 +105,6 @@ public class GasStationCheckpointManager : MonoBehaviour
 
         _activeStation.transform.SetParent(ObjectMover.worldMove);
 
-        //SideObjectScroll scroll = _activeStation.GetComponent<SideObjectScroll>();
-        //if (scroll == null) scroll = _activeStation.AddComponent<SideObjectScroll>();
-        //scroll.m_destroyZ = float.NegativeInfinity;
 
         GasStationTrigger trigger = _activeStation.GetComponentInChildren<GasStationTrigger>();
         if (trigger == null) trigger = _activeStation.AddComponent<GasStationTrigger>();
@@ -119,6 +116,7 @@ public class GasStationCheckpointManager : MonoBehaviour
     public void OnPlayerEnteredStation(GasStationTrigger trigger)
     {
         carMovement.SetPaused(true);
+        if (SpeedManager.Instance != null) SpeedManager.Instance.RefillGas();
         _oldCameraParent = Camera.main.transform.parent;
         BeginCameraRecenter(trigger.newCameraParent);
         trigger.doorOpenScript.Open(cameraRecenterDelay+0.5f);

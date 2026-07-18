@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -9,27 +10,46 @@ public class SpeedManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private CarMovement carMovement;
     [SerializeField] private SpeedOdometer odometer;
+    [SerializeField] private TMP_Text gasText;
 
-    [Header("Speed Curve")]
+    [Header("Initial Ramp-Up (one-time)")]
     [SerializeField] private float startingSpeed = 0.05f;
-    [SerializeField] private float speedRampPerSecond = 0.15f;
-    [SerializeField] private float maxBaseSpeed = 8f;
+    [SerializeField] private float initialRampPerSecond = 0.15f;
+    [Tooltip("The 'good speed' the car ramps up to once at round start. After reaching this, the car never ramps up again on its own -- only the passive decline and gas-recovery ramps apply from here on.")]
+    [SerializeField] private float cruisingSpeedTarget = 4f;
+
+    [Header("Passive Decline (permanent, after reaching cruising speed)")]
+    [Tooltip("Very slow constant decline to the speed target, active for the rest of the round regardless of gas level.")]
+    [SerializeField] private float passiveDecayPerSecond = 0.02f;
+    [Tooltip("Much steeper decline rate used instead of the passive one whenever gas is empty.")]
+    [SerializeField] private float emptyGasDecayPerSecond = 1.5f;
+
+    [Header("Gas")]
+    [SerializeField] private float maxGas = 100f;
+    [SerializeField] private float passiveGasDrainPerSecond = 1f;
+    [Tooltip("Extra gas drained per second on top of the passive drain, while scrollSpeed is below the target and catching back up (e.g. recovering from an obstacle hit).")]
+    [SerializeField] private float recoveryExtraGasDrainPerSecond = 3f;
+    [Tooltip("Extra gas drained per second while boost is active.")]
+    [SerializeField] private float boostExtraGasDrainPerSecond = 4f;
+    [SerializeField] private string gasSuffix = " gas";
+    [SerializeField] private int gasDecimalPlaces = 0;
 
     [Header("Lose Condition")]
     [SerializeField] private float stalledGraceDuration = 1.5f;
-
     [SerializeField] private float loseSpeedThreshold = 0.15f;
-
     [SerializeField] private float openingGraceDuration = 4f;
-
     [SerializeField] private string loseSceneName = "LoseScene";
     [SerializeField] private UnityEvent onLose;
-
-    [SerializeField, Range(0f, 1f)] private float basePenaltyMultiplier = 1f;
 
     private float _roundTime;
     private float _timeBelowThreshold;
     private bool _hasLost;
+    private bool _hasReachedCruisingSpeed;
+    private float _currentGas;
+
+    public float CurrentGas => _currentGas;
+    public float MaxGas => maxGas;
+    public float GasPercent => maxGas > 0f ? _currentGas / maxGas : 0f;
 
     private void Awake()
     {
@@ -39,6 +59,8 @@ public class SpeedManager : MonoBehaviour
     private void Start()
     {
         carMovement.BaseScrollSpeed = startingSpeed;
+        _currentGas = maxGas;
+        RefreshGasDisplay();
     }
 
     private void Update()
@@ -47,18 +69,60 @@ public class SpeedManager : MonoBehaviour
 
         if (carMovement.IsPaused)
         {
-            // don't ramp speed or evaluate the lose condition while parked at a gas station
+            // don't ramp/decay speed, drain gas, or evaluate the lose condition while parked at a gas station
             _timeBelowThreshold = 0f;
             return;
         }
 
         _roundTime += Time.deltaTime;
 
-        carMovement.BaseScrollSpeed = Mathf.Min(
-            maxBaseSpeed,
-            carMovement.BaseScrollSpeed + speedRampPerSecond * Time.deltaTime);
-
+        UpdateSpeedCurve();
+        UpdateGas();
         CheckLoseCondition();
+    }
+
+    private void UpdateSpeedCurve()
+    {
+        bool isEmpty = _currentGas <= 0f;
+
+        if (isEmpty)
+        {
+            carMovement.BaseScrollSpeed = Mathf.Max(
+                0f,
+                carMovement.BaseScrollSpeed - emptyGasDecayPerSecond * Time.deltaTime);
+            return;
+        }
+
+        if (!_hasReachedCruisingSpeed)
+        {
+            carMovement.BaseScrollSpeed = Mathf.Min(
+                cruisingSpeedTarget,
+                carMovement.BaseScrollSpeed + initialRampPerSecond * Time.deltaTime);
+
+            if (carMovement.BaseScrollSpeed >= cruisingSpeedTarget)
+            {
+                _hasReachedCruisingSpeed = true;
+            }
+        }
+        else
+        {
+            carMovement.BaseScrollSpeed = Mathf.Max(
+                0f,
+                carMovement.BaseScrollSpeed - passiveDecayPerSecond * Time.deltaTime);
+        }
+    }
+
+    private void UpdateGas()
+    {
+        bool isRecovering = CarMovement.scrollSpeed < carMovement.BaseScrollSpeed - 0.01f;
+        bool isBoosting = carMovement.IsBoosting;
+
+        float drain = passiveGasDrainPerSecond * Time.deltaTime;
+        if (isRecovering) drain += recoveryExtraGasDrainPerSecond * Time.deltaTime;
+        if (isBoosting) drain += boostExtraGasDrainPerSecond * Time.deltaTime;
+
+        _currentGas = Mathf.Max(0f, _currentGas - drain);
+        RefreshGasDisplay();
     }
 
     private void CheckLoseCondition()
@@ -85,8 +149,24 @@ public class SpeedManager : MonoBehaviour
 
     public void ApplySpeedPenalty(float amount)
     {
+        carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - amount);
         CarMovement.scrollSpeed = Mathf.Max(0f, CarMovement.scrollSpeed - amount);
-        carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - amount * basePenaltyMultiplier);
+    }
+
+    public void RefillGas()
+    {
+        _currentGas = maxGas;
+        RefreshGasDisplay();
+    }
+
+    private void RefreshGasDisplay()
+    {
+        if (gasText == null)
+        {
+            return;
+        }
+
+        gasText.text = _currentGas.ToString($"F{gasDecimalPlaces}") + gasSuffix;
     }
 
     private void TriggerLose()

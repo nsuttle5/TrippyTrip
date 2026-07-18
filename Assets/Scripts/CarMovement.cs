@@ -52,6 +52,7 @@ public class CarMovement : MonoBehaviour
     private int _globalPropertyId;
 
     public bool IsPaused => _isPaused;
+    public bool IsBoosting => _isBoosting;
 
     public float BaseScrollSpeed
     {
@@ -83,6 +84,12 @@ public class CarMovement : MonoBehaviour
     void Update()
     {
         if (_isPaused) return;
+
+        if (SpeedManager.Instance != null && SpeedManager.Instance.CurrentGas <= 0f)
+        {
+            _currentMoveSpeedMultiplier = 1f;
+            _isBoosting = false;
+        }
 
         //Set scroll speeds globally
         float targetScrollSpeed = baseScrollSpeed * _currentMoveSpeedMultiplier;
@@ -165,6 +172,8 @@ public class CarMovement : MonoBehaviour
     {
         if (Keyboard.current == null) return;
 
+        bool hasGas = SpeedManager.Instance == null || SpeedManager.Instance.CurrentGas > 0f;
+
         if (enableShrinkMechanic && !_isShrinking && Keyboard.current[shrinkKey].wasPressedThisFrame)
         {
             StartCoroutine(ShrinkRoutine());
@@ -175,7 +184,7 @@ public class CarMovement : MonoBehaviour
             Launch();
         }
 
-        if (enableBoostMechanic && !_isBoosting && Keyboard.current[boostKey].wasPressedThisFrame)
+        if (hasGas && enableBoostMechanic && !_isBoosting && Keyboard.current[boostKey].wasPressedThisFrame)
         {
             StartCoroutine(BoostRoutine());
         }
