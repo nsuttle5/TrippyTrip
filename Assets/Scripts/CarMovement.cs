@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CarMovement : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class CarMovement : MonoBehaviour
     [Header("Road Scroll")]
     [SerializeField] private float baseScrollSpeed = 1f;
     [SerializeField] private float scrollSpeedTransitionSpeed = 5f;
+
+    [Header("UI")]
+    [SerializeField] private Slider gasPercentSlider;
+
     public static float scrollTime;
     private const string timePropertyName = "_time";
     public static float scrollSpeed;
@@ -79,10 +84,13 @@ public class CarMovement : MonoBehaviour
         _originalScale = transform.localScale;
         _groundY = rb.position.y;
         _globalPropertyId = Shader.PropertyToID(timePropertyName);
+        UpdateGasPercentSlider();
     }
 
     void Update()
     {
+        UpdateGasPercentSlider();
+
         if (_isPaused) return;
 
         if (SpeedManager.Instance != null && SpeedManager.Instance.CurrentGas <= 0f)
@@ -150,6 +158,22 @@ public class CarMovement : MonoBehaviour
         {
             scrollSpeed = Mathf.MoveTowards(scrollSpeed, targetScrollSpeed, scrollSpeedTransitionSpeed * Time.deltaTime);
         }
+    }
+
+    private void UpdateGasPercentSlider()
+    {
+        if (gasPercentSlider == null)
+        {
+            return;
+        }
+
+        if (SpeedManager.Instance == null)
+        {
+            gasPercentSlider.value = 0f;
+            return;
+        }
+
+        gasPercentSlider.value = SpeedManager.Instance.GasPercent;
     }
 
     private float GetHorizontalInput()
