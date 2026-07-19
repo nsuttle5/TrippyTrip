@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Pricetag
   - ground
+  - fire
   layers:
   - Default
   - TransparentFX
