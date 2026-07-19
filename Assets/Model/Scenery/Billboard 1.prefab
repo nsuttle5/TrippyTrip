@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 11d37615a107f2248bc767532d2ef2a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0829a1f030843cc4885d4b6b537e3b7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 743650bdb58e3ed4999e198709db9a02, type: 2}
     - target: {fileID: 919132149155446097, guid: 9f21dc4b6ad8f8240bf41995a598997f, type: 3}
       propertyPath: m_Name
-      value: Billboard
+      value: Billboard 1
       objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: 9f21dc4b6ad8f8240bf41995a598997f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

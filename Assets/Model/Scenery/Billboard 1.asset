@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d096b4bea28538c47a7fd80648c19a5e, type: 3}
+  m_Name: Billboard 1
+  m_EditorClassIdentifier: Assembly-CSharp::SceneryData
+  modelPrefab: {fileID: 8730804469395555251, guid: ea4aad0dd2cb25b4099eb6cd4d535078, type: 3}
+  spawnSide: 2
+  faceRoad: 1
+  leftFacingOffset: {x: 0, y: 0, z: 0}
+  rightFacingOffset: {x: 0, y: 180, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 180, z: 0}
+  scaleMultiplier: {x: 3, y: 3, z: 3}

@@ -696,6 +696,10 @@ MonoBehaviour:
   spawnPoint: {fileID: 625496285}
   allScenery:
   - {fileID: 11400000, guid: e49eaafa78f388d44ab4a657fb938027, type: 2}
+  - {fileID: 11400000, guid: f07b4e25d3e411c4da604a26fa1fb2e7, type: 2}
+  - {fileID: 11400000, guid: 3429ed27bb81c7849a3fd2aeb46f693e, type: 2}
+  - {fileID: 11400000, guid: 5d6d74d0e78cccc429e625444556092c, type: 2}
+  - {fileID: 11400000, guid: 25415ab27ab45d648a6764a77255d105, type: 2}
   leftSideX: -18
   rightSideX: 18
   minSpawnInterval: 5
