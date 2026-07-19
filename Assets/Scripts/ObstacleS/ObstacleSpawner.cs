@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Spawns obstacles from a rotating random "pool" of ObstacleData types.
-/// Call StartNewLeg() (wired to GasStationCheckpointManager's onStationDeparted
-/// event) to re-roll the pool and escalate both pool size and spawn frequency.
-/// Reuses SideObjectScroll for movement, same as your other roadside objects.
-/// </summary>
 public class ObstacleSpawner : MonoBehaviour
 {
     [Header("References")]
@@ -28,6 +22,10 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float intervalReductionPerLeg = 0.2f;
     [Tooltip("Floor so escalation never produces an impossible-to-dodge spawn rate.")]
     [SerializeField] private float minPossibleInterval = 0.6f;
+    [Tooltip("Road speed at which spawn timing stays at the base interval. Slower speeds stretch the wait time.")]
+    [SerializeField] private float referenceScrollSpeed = 4f;
+    [Tooltip("Caps how much slower spawning can get when the road slows down.")]
+    [SerializeField] private float maxSpawnIntervalMultiplier = 3f;
 
     [Header("Lane Positions")]
     [SerializeField] private float leftLaneX = -3f;
@@ -48,8 +46,7 @@ public class ObstacleSpawner : MonoBehaviour
         StartNewLeg(); // first leg begins immediately, before any gas station
     }
 
-    /// <summary>Re-rolls the obstacle pool and restarts spawning with escalated count/frequency.
-    /// Wire this to GasStationCheckpointManager's onStationDeparted UnityEvent.</summary>
+
     public void StartNewLeg()
     {
         _legIndex++;
@@ -95,13 +92,37 @@ public class ObstacleSpawner : MonoBehaviour
             float minInterval = Mathf.Max(minPossibleInterval, baseMinSpawnInterval - intervalReductionPerLeg * _legIndex);
             float maxInterval = Mathf.Max(minInterval, baseMaxSpawnInterval - intervalReductionPerLeg * _legIndex);
 
-            yield return new WaitForSeconds(Random.Range(minInterval, maxInterval));
+            float remainingTime = Random.Range(minInterval, maxInterval);
+            while (remainingTime > 0f)
+            {
+                if (carMovement != null && carMovement.IsPaused)
+                {
+                    yield return null;
+                    continue;
+                }
+
+                remainingTime -= Time.deltaTime / GetSpawnIntervalMultiplier();
+                yield return null;
+            }
 
             // don't queue obstacles while parked at a gas station -- they'd just pile up motionless
             if (carMovement != null && carMovement.IsPaused) continue;
 
             SpawnOne();
         }
+    }
+
+    private float GetSpawnIntervalMultiplier()
+    {
+        float roadSpeed = Mathf.Max(0f, CarMovement.scrollSpeed);
+        float speedReference = Mathf.Max(0.01f, referenceScrollSpeed);
+
+        if (roadSpeed >= speedReference)
+        {
+            return 1f;
+        }
+
+        return Mathf.Clamp(speedReference / Mathf.Max(0.01f, roadSpeed), 1f, maxSpawnIntervalMultiplier);
     }
 
     private void SpawnOne()

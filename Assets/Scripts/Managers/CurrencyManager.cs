@@ -10,10 +10,17 @@ public class CurrencyManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _currencyDisplay;
 
+    [SerializeField]
+    private AudioClip _pickupClip;
+
+    [SerializeField]
+    private Vector2 _pickupPitchRange = new Vector2(0.9f, 1.1f);
+
     private int m_currencyCount = 0;
     public Transform coinstack;
     public float coinToScale = .02f;
     public static CurrencyManager Instance { get; private set; }
+    private AudioSource _audioSource;
 
     void Awake()
     {
@@ -23,6 +30,12 @@ public class CurrencyManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -31,6 +44,8 @@ public class CurrencyManager : MonoBehaviour
         {
             Object.Destroy(other.gameObject);
             m_currencyCount++;
+
+            PlayPickupSound();
 
             if (m_currencyCount > _maxCurrency)
                 m_currencyCount = _maxCurrency;
@@ -67,5 +82,17 @@ public class CurrencyManager : MonoBehaviour
             float targetScale = coinToScale * m_currencyCount;
             coinstack.localScale = Vector3.Lerp(coinstack.localScale, new Vector3(1, targetScale, 1), Time.deltaTime * 5f);
         }
+    }
+
+    private void PlayPickupSound()
+    {
+        if (_pickupClip == null || _audioSource == null)
+        {
+            return;
+        }
+
+        _audioSource.pitch = Random.Range(_pickupPitchRange.x, _pickupPitchRange.y);
+        _audioSource.PlayOneShot(_pickupClip);
+        _audioSource.pitch = 1f;
     }
 }
