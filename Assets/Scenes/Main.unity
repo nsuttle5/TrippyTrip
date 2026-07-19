@@ -702,6 +702,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25415ab27ab45d648a6764a77255d105, type: 2}
   - {fileID: 11400000, guid: 06580fcbafd5d554882b2a9d21f156f7, type: 2}
   - {fileID: 11400000, guid: ecb13150e1fcf8347a0de549dc18f4d4, type: 2}
+  - {fileID: 11400000, guid: ff0ea8956556df34ba362369d0d4d4ea, type: 2}
   leftSideX: -18
   rightSideX: 18
   minSpawnInterval: 5
