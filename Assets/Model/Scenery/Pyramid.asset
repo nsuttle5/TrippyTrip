@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d096b4bea28538c47a7fd80648c19a5e, type: 3}
-  m_Name: Phonebooth
+  m_Name: Pyramid
   m_EditorClassIdentifier: Assembly-CSharp::SceneryData
-  modelPrefab: {fileID: 1911644107120116128, guid: 771a829c78afdf44988452db3c77d125, type: 3}
+  modelPrefab: {fileID: 1372454608458189177, guid: 2cb71e144d8073a4b826c27497f3efb7, type: 3}
   spawnSide: 2
   faceRoad: 1
-  leftFacingOffset: {x: 0, y: 0, z: 0}
-  rightFacingOffset: {x: 0, y: 0, z: 0}
+  leftFacingOffset: {x: 0, y: 45, z: 0}
+  rightFacingOffset: {x: 0, y: 45, z: 0}
   positionOffset: {x: 0, y: 0, z: 0}
-  rotationOffset: {x: -90, y: 0, z: 0}
+  rotationOffset: {x: -90, y: 45, z: 0}
   scaleMultiplier: {x: 2, y: 2, z: 2}
