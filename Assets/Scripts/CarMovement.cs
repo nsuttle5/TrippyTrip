@@ -156,7 +156,9 @@ public class CarMovement : MonoBehaviour
         //Handle rotation visual
         float rotationAngle = (currentSpeed / moveSpeed) * rotationScale;
         float targetY = Mathf.LerpAngle(transform.localEulerAngles.y, rotationAngle, Time.deltaTime * rotationSpeed);
-        rb.angularVelocity += new Vector3(rb.angularVelocity.x, (targetY - transform.localEulerAngles.y) * rotationSpeed, rb.angularVelocity.z);
+        float turnInput = Mathf.Clamp(horizontalInput, -1f, 1f);
+        float turnJiggle = -turnInput * Mathf.Abs(rotationScale) * 0.08f * Mathf.Clamp01(scrollSpeed / Mathf.Max(0.01f, targetScrollSpeed));
+        rb.angularVelocity = new Vector3(0f, (targetY - transform.localEulerAngles.y) * rotationSpeed, turnJiggle * rotationSpeed);
 
         if (position.x > roadBound || position.x < -roadBound)
         {

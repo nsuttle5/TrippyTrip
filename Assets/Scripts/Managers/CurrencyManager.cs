@@ -1,6 +1,7 @@
 
 using TMPro;
 using UnityEngine;
+using System;
 
 public class CurrencyManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class CurrencyManager : MonoBehaviour
     public Transform coinstack;
     public float coinToScale = .02f;
     public static CurrencyManager Instance { get; private set; }
+    public event Action<int> CurrencyChanged;
     private AudioSource _audioSource;
 
     void Awake()
@@ -42,7 +44,7 @@ public class CurrencyManager : MonoBehaviour
     {
         if (other.CompareTag("Currency"))
         {
-            Object.Destroy(other.gameObject);
+            UnityEngine.Object.Destroy(other.gameObject);
             m_currencyCount++;
 
             PlayPickupSound();
@@ -51,6 +53,7 @@ public class CurrencyManager : MonoBehaviour
                 m_currencyCount = _maxCurrency;
 
             _currencyDisplay.text = m_currencyCount.ToString();
+            CurrencyChanged?.Invoke(m_currencyCount);
         }
     }
 
@@ -65,6 +68,7 @@ public class CurrencyManager : MonoBehaviour
         {
             m_currencyCount -= item.price;
             _currencyDisplay.text = m_currencyCount.ToString();
+            CurrencyChanged?.Invoke(m_currencyCount);
             Debug.Log($"Bought {item.name} for ${item.price}");
             return true;
         }
@@ -91,7 +95,7 @@ public class CurrencyManager : MonoBehaviour
             return;
         }
 
-        _audioSource.pitch = Random.Range(_pickupPitchRange.x, _pickupPitchRange.y);
+        _audioSource.pitch = UnityEngine.Random.Range(_pickupPitchRange.x, _pickupPitchRange.y);
         _audioSource.PlayOneShot(_pickupClip);
         _audioSource.pitch = 1f;
     }

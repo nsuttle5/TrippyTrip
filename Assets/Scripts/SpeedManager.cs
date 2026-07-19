@@ -24,6 +24,10 @@ public class SpeedManager : MonoBehaviour
     [Tooltip("Much steeper decline rate used instead of the passive one whenever gas is empty.")]
     [SerializeField] private float emptyGasDecayPerSecond = 1.5f;
 
+    [Header("Gas Station Departure")]
+    [Tooltip("Extra scroll speed granted when leaving a gas station. The normal decay curve then pulls this back down.")]
+    [SerializeField] private float stationDepartureBoost = 1.5f;
+
     [Header("Gas")]
     [SerializeField] private float maxGas = 100f;
     [SerializeField] private float passiveGasDrainPerSecond = 1f;
@@ -151,6 +155,12 @@ public class SpeedManager : MonoBehaviour
     {
         carMovement.BaseScrollSpeed = Mathf.Max(0f, carMovement.BaseScrollSpeed - amount);
         CarMovement.scrollSpeed = Mathf.Max(0f, CarMovement.scrollSpeed - amount);
+    }
+
+    public void ApplyStationDepartureBoost()
+    {
+        carMovement.BaseScrollSpeed = Mathf.Max(carMovement.BaseScrollSpeed, cruisingSpeedTarget) + stationDepartureBoost;
+        _hasReachedCruisingSpeed = true;
     }
 
     public void RefillGas()

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: DrugRegistry
   m_EditorClassIdentifier: Assembly-CSharp::DrugRegistry
   entries:
-  - name: BruhDrug
+  - name: Donut
+    drug: {fileID: 11400000, guid: 814ef6043d9e1c043a8e60d0f08599e2, type: 2}
+  - name: Down
+    drug: {fileID: 11400000, guid: 516c7862bb6fabb47afe431b0bf93b03, type: 2}
+  - name: Righty Tighty
     drug: {fileID: 11400000, guid: 0a9af14d4baec704dafb0c087915e4c4, type: 2}

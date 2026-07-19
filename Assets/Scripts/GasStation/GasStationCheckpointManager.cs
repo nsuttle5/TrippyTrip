@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using TMPro;
 
 public class GasStationCheckpointManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GasStationCheckpointManager : MonoBehaviour
     private float _nextSpawnMiles;
     private bool _stationSpawned;
     private GameObject _activeStation;
+    private TMP_Text _activeMoneyText;
 
     private Transform _oldCameraParent;
     private float _cameraRecenterStartTime;
@@ -119,11 +121,16 @@ public class GasStationCheckpointManager : MonoBehaviour
         if (SpeedManager.Instance != null) SpeedManager.Instance.RefillGas();
         _oldCameraParent = Camera.main.transform.parent;
         BeginCameraRecenter(trigger.newCameraParent);
-        trigger.doorOpenScript.Open(cameraRecenterDelay+0.5f);
+        trigger.doorOpenScript.Open(cameraRecenterDelay + 0.5f);
         trigger.shopUIRoot.GetComponent<Canvas>().worldCamera = Camera.main;
         trigger.continueButton.onClick.RemoveListener(OnContinuePressed);
         trigger.continueButton.onClick.AddListener(OnContinuePressed);
-        trigger.moneyText.text = CurrencyManager.Instance.GetCurrencyCount().ToString();
+        _activeMoneyText = trigger.moneyText;
+        if (_activeMoneyText != null && CurrencyManager.Instance != null)
+        {
+            CurrencyManager.Instance.CurrencyChanged += OnCurrencyChanged;
+            OnCurrencyChanged(CurrencyManager.Instance.GetCurrencyCount());
+        }
     }
 
 
@@ -163,11 +170,31 @@ public class GasStationCheckpointManager : MonoBehaviour
 
         if (_activeStation != null) Destroy(_activeStation, stationDespawnDelay);
         _activeStation = null;
+
+        if (CurrencyManager.Instance != null)
+        {
+            CurrencyManager.Instance.CurrencyChanged -= OnCurrencyChanged;
+        }
+
+        _activeMoneyText = null;
         _stationSpawned = false;
+
+        if (SpeedManager.Instance != null)
+        {
+            SpeedManager.Instance.ApplyStationDepartureBoost();
+        }
 
         _currentGapMiles *= gapGrowthMultiplier;
         _nextSpawnMiles = odometer.TotalMiles + _currentGapMiles;
 
         onStationDeparted?.Invoke();
+    }
+
+    private void OnCurrencyChanged(int currencyCount)
+    {
+        if (_activeMoneyText != null)
+        {
+            _activeMoneyText.text = currencyCount.ToString();
+        }
     }
 }

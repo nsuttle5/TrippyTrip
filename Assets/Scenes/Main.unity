@@ -1350,6 +1350,7 @@ MonoBehaviour:
   cruisingSpeedTarget: 4
   passiveDecayPerSecond: 0.02
   emptyGasDecayPerSecond: 1.5
+  stationDepartureBoost: 1.5
   maxGas: 100
   passiveGasDrainPerSecond: 1
   recoveryExtraGasDrainPerSecond: 3

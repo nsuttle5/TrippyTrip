@@ -10,25 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7106e7a698280754a9a765be4c2084a3, type: 3}
-  m_Name: NewDrug
+  m_Name: Down
   m_EditorClassIdentifier: Assembly-CSharp::drug
-  drugName: Righty Tighty
+  drugName: Down
   effects:
   - parameters: []
-    targetVariable: 0
+    targetVariable: 1
     mode: 0
-    targetValue: 1
+    targetValue: -2
     secondaryValue: 0
-    targetColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    lerpDuration: 1
-    loopDuration: 2
-  - parameters: []
-    targetVariable: 3
-    mode: 0
-    targetValue: 1
-    secondaryValue: 0
-    targetColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    lerpDuration: 1
-    loopDuration: 2
+    targetColor: {r: 0, g: 0, b: 0, a: 0}
+    secondaryColor: {r: 0, g: 0, b: 0, a: 0}
+    lerpDuration: 0
+    loopDuration: 0
