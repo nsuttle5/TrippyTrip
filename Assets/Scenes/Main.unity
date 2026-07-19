@@ -119,6 +119,103 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &34313537
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198761720}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 038764f8319c65c4e821d7fd9c5685f9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.348
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &37694423
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +453,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132138852}
   m_CullTransparentMesh: 1
+--- !u!1 &198761720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+  m_PrefabInstance: {fileID: 2029702027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &216001424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4657458747483765420, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
@@ -552,6 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316466731}
   - component: {fileID: 316466732}
+  - component: {fileID: 316466733}
   m_Layer: 0
   m_Name: WindshielfArea
   m_TagString: Untagged
@@ -595,6 +698,103 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &316466733
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316466730}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 032e82bb197c90441a084628ae648294, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &346764635
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,8 +1144,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WindshieldWiperController
   wiperPivot: {fileID: 1784459395}
   blobSpawner: {fileID: 501867789}
+  audioSource: {fileID: 0}
+  wipeClip: {fileID: 0}
   wipeKey: 19
   cooldown: 0.6
+  wipePitchRange: {x: 0.9, y: 1.1}
   rotationAxis: {x: -1, y: 0, z: 0}
   sweepAngle: 90
   sweepUpDuration: 0.18
@@ -1218,8 +1421,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WindshieldWiperController
   wiperPivot: {fileID: 1784459395}
   blobSpawner: {fileID: 625496287}
+  audioSource: {fileID: 316466733}
+  wipeClip: {fileID: 8300000, guid: 032e82bb197c90441a084628ae648294, type: 3}
   wipeKey: 19
   cooldown: 0.6
+  wipePitchRange: {x: 0.9, y: 1.1}
   rotationAxis: {x: -1, y: 0, z: 0}
   sweepAngle: 90
   sweepUpDuration: 0.18
@@ -7690,14 +7896,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5874730989995070384, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1423611767}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3614507334996918423, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 34313537}
   m_SourcePrefab: {fileID: 100100000, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
 --- !u!114 &2029702028 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1540666164508069095, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
   m_PrefabInstance: {fileID: 2029702027}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 198761720}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e55495dc0b942ea428175ae3ab1627e4, type: 3}

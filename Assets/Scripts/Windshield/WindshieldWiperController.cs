@@ -7,10 +7,15 @@ public class WindshieldWiperController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform wiperPivot;
     [SerializeField] private WindshieldBlobSpawner blobSpawner;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip wipeClip;
 
     [Header("Input")]
     [SerializeField] private Key wipeKey = Key.E;
     [SerializeField] private float cooldown = 0.6f;
+
+    [Header("Audio")]
+    [SerializeField] private Vector2 wipePitchRange = new Vector2(0.9f, 1.1f);
 
     [Header("Wipe Motion")]
     [Tooltip("Axis (in the wiper pivot's LOCAL space) it rotates around. Try (0,0,1) for Z, (0,1,0) for Y, or (1,0,0) for X depending on your model's orientation -- this is the fix if the wiper was spinning around the wrong axis.")]
@@ -28,6 +33,18 @@ public class WindshieldWiperController : MonoBehaviour
     private void Awake()
     {
         if (wiperPivot != null) _restRotation = wiperPivot.localRotation;
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -47,6 +64,8 @@ public class WindshieldWiperController : MonoBehaviour
         _isWiping = true;
         _cooldownTimer = cooldown;
 
+        PlayWipeSound();
+
         yield return RotateWiper(0f, sweepAngle, sweepUpDuration);
 
         if (blobSpawner != null) blobSpawner.FlingAllBlobs();
@@ -54,6 +73,18 @@ public class WindshieldWiperController : MonoBehaviour
         yield return RotateWiper(sweepAngle, 0f, sweepDownDuration);
 
         _isWiping = false;
+    }
+
+    private void PlayWipeSound()
+    {
+        if (wipeClip == null || audioSource == null)
+        {
+            return;
+        }
+
+        audioSource.pitch = Random.Range(wipePitchRange.x, wipePitchRange.y);
+        audioSource.PlayOneShot(wipeClip);
+        audioSource.pitch = 1f;
     }
 
     private IEnumerator RotateWiper(float fromAngle, float toAngle, float duration)

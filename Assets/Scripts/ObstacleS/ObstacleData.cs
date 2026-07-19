@@ -7,18 +7,13 @@ public enum ObstacleLane
     Right
 }
 
-/// <summary>
-/// Data-driven obstacle definition. Create instances via
-/// Assets > Create > Obstacles > Obstacle Data.
-/// The spawner reads this to instantiate the model in the right lane and
-/// configure an ObstacleSpeedPenalty on it at spawn time.
-/// </summary>
 [CreateAssetMenu(fileName = "New Obstacle", menuName = "Obstacles/Obstacle Data")]
 public class ObstacleData : ScriptableObject
 {
     [Header("Placement")]
     public ObstacleLane lane = ObstacleLane.Center;
     public GameObject modelPrefab;
+    public bool isCarObstacle = false;
 
     [Header("Speed Penalty")]
     public float speedPenalty = 1.5f;
@@ -35,6 +30,9 @@ public class ObstacleData : ScriptableObject
     [Header("Sound Effects")]
     [Tooltip("One is picked at random when the player hits this obstacle. Leave empty for silent.")]
     public AudioClip[] hitSounds;
+    [Tooltip("Played once when a car obstacle passes the player. Leave empty for silent.")]
+    public AudioClip passByClip;
+    public Vector2 passByPitchRange = new Vector2(0.9f, 1.1f);
     [Header("Particles")]
     public GameObject deathParticle;
 }

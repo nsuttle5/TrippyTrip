@@ -6,21 +6,63 @@ public class ObstacleSpeedPenalty : MonoBehaviour
     [SerializeField] private float speedPenalty = 1.5f;
     [SerializeField] private bool destroySelfOnHit = true;
     [SerializeField] private AudioClip[] hitSounds;
+    [SerializeField] private AudioClip passByClip;
+    [SerializeField] private Vector2 passByPitchRange = new Vector2(0.9f, 1.1f);
+    [SerializeField] private bool isCarObstacle;
+    [SerializeField] private float passByZThreshold = 0f;
     [SerializeField] private GameObject destroyParticle;
 
     private bool _hasHit;
+    private bool _hasPlayedPassBySound;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
-        Collider col = GetComponent<Collider>();
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        _audioSource.playOnAwake = false;
+        _audioSource.spatialBlend = 1f;
     }
 
-    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds, GameObject particle)
+    private void Update()
+    {
+        if (_hasHit || _hasPlayedPassBySound || !isCarObstacle || passByClip == null)
+        {
+            return;
+        }
+
+        if (transform.position.z <= passByZThreshold)
+        {
+            _hasPlayedPassBySound = true;
+            PlayPassBySound();
+        }
+    }
+
+    public void Configure(float penalty, bool destroyOnHit, AudioClip[] sounds, AudioClip passClip, Vector2 pitchRange, bool carObstacle, GameObject particle)
     {
         speedPenalty = penalty;
         destroySelfOnHit = destroyOnHit;
         hitSounds = sounds;
+        passByClip = passClip;
+        passByPitchRange = pitchRange;
+        isCarObstacle = carObstacle;
         destroyParticle = particle;
+    }
+
+    private void PlayPassBySound()
+    {
+        if (_audioSource == null)
+        {
+            return;
+        }
+
+        _audioSource.pitch = Random.Range(passByPitchRange.x, passByPitchRange.y);
+        _audioSource.PlayOneShot(passByClip);
+        _audioSource.pitch = 1f;
     }
 
     private void OnTriggerEnter(Collider other)

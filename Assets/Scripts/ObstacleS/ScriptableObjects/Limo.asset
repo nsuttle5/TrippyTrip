@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleData
   lane: 0
   modelPrefab: {fileID: 2293628770265251949, guid: 0fc2cd9654b2ef640a3558999aea92e9, type: 3}
+  isCarObstacle: 1
   speedPenalty: 1.5
   destroySelfOnHit: 1
   positionOffset: {x: 0, y: 0.6, z: 0}
   rotationOffset: {x: 0, y: 0, z: 180}
   scaleMultiplier: {x: 1, y: 1, z: 1}
-  hitSounds: []
+  hitSounds:
+  - {fileID: 8300000, guid: 28643c7241446404289b6fe036bee50f, type: 3}
+  - {fileID: 8300000, guid: eaee7305a52e4c941b67db28f232e26b, type: 3}
+  passByClip: {fileID: 8300000, guid: 60a7ca85630394d4aa86717d9ea03a29, type: 3}
+  passByPitchRange: {x: 0.9, y: 1.1}
   deathParticle: {fileID: 2838672693648666704, guid: e215c2a01d429b14d8cd5f33fed2d817, type: 3}
