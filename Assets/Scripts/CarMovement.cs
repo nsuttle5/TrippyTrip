@@ -92,6 +92,7 @@ public class CarMovement : MonoBehaviour
         UpdateGasPercentSlider();
 
         if (_isPaused) return;
+        //Debug.Log($"paused={_isPaused} input={GetHorizontalInput()} velX={rb.linearVelocity.x:F3} baseScroll={baseScrollSpeed:F3} scrollSpeed={scrollSpeed:F3} multiplier={_currentMoveSpeedMultiplier:F2}");
 
         if (SpeedManager.Instance != null && SpeedManager.Instance.CurrentGas <= 0f)
         {
@@ -121,7 +122,14 @@ public class CarMovement : MonoBehaviour
         float effectiveMoveSpeed = moveSpeed * _currentMoveSpeedMultiplier;
         float desiredSpeed = horizontalInput * effectiveMoveSpeed - closeness * boundForce * effectiveMoveSpeed * Mathf.Sign(position.x);
         float currentSpeed = rb.linearVelocity.x;
-        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime) * Mathf.Pow(scrollSpeed / targetScrollSpeed, speedTurnCorrelation);
+
+
+        float speedRatio = targetScrollSpeed > 0.1f
+            ? Mathf.Clamp01(scrollSpeed / targetScrollSpeed)
+            : 1f;
+        float turnResponseMultiplier = Mathf.Pow(speedRatio, speedTurnCorrelation);
+
+        float newSpeed = Mathf.MoveTowards(currentSpeed, desiredSpeed, acceleration * Time.deltaTime) * turnResponseMultiplier;
 
 
         //Vertical movement

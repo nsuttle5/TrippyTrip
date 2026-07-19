@@ -7510,6 +7510,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1077518765023776942, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1289632577196918791, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -7524,7 +7528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2415056752682964245, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.27
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 2415056752682964245, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7589,6 +7593,10 @@ PrefabInstance:
     - target: {fileID: 8522400430285788386, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941027284981727686, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
+      propertyPath: m_Constraints
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 9094399143923517376, guid: 0529c34bfe238894f96bdb56e3ebde94, type: 3}
       propertyPath: songs.Array.size
