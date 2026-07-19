@@ -967,6 +967,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55ba1a43d4f18c3498c259b5306ff5c3, type: 2}
   - {fileID: 11400000, guid: c120c4385d2f9e147a5b39c1269e5ac9, type: 2}
   - {fileID: 11400000, guid: f2b3fc951dc165249b657768f704eae4, type: 2}
+  - {fileID: 11400000, guid: 442582c0e85300b48bac383d4f3e705e, type: 2}
+  - {fileID: 11400000, guid: 13a5bd0e600b7f54482a5330e8b176d7, type: 2}
   allowDuplicatesInPool: 0
   basePoolSize: 4
   poolSizeGrowthPerLeg: 1
