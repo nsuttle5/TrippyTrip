@@ -1,19 +1,20 @@
 #ifndef CUSTOM_FUNCTION_TESSELLATION_SCALE_SAFE_INCLUDED
 #define CUSTOM_FUNCTION_TESSELLATION_SCALE_SAFE_INCLUDED
 
-#pragma require tessellation
-
-#pragma hull HullProgram
-#pragma domain DomainProgram
-
 #if defined(SHADER_API_D3D11) || defined(SHADER_API_GLCORE) || \
     defined(SHADER_API_VULKAN) || defined(SHADER_API_METAL) || \
     defined(SHADER_API_PSSL)
+    #define TESSELLATION_SUPPORTED 1
+    #pragma require tessellation
+    #pragma hull HullProgram
+    #pragma domain DomainProgram
     #define UNITY_domain domain
     #define UNITY_partitioning partitioning
     #define UNITY_outputtopology outputtopology
     #define UNITY_patchconstantfunc patchconstantfunc
     #define UNITY_outputcontrolpoints outputcontrolpoints
+#else
+    #define TESSELLATION_SUPPORTED 0
 #endif
 
 struct TessellationFactors
@@ -35,6 +36,8 @@ float2 TessClipToPixel(float4 positionCS)
     float2 ndc = positionCS.xy / safeW;
     return (ndc * 0.5 + 0.5) * _ScreenParams.xy;
 }
+
+#if TESSELLATION_SUPPORTED
 
 TessellationFactors PatchConstantFunction(InputPatch<PackedVaryings, 3> patch)
 {
@@ -124,6 +127,8 @@ PackedVaryings DomainProgram(
     ModifyTessellatedVertex(output);
     return output;
 }
+
+#endif
 
 void ForceTessDummy_half(out half Out)
 {
